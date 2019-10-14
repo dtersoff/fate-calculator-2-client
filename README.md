@@ -12,7 +12,7 @@ An app which allows a user to keep track of the Servant characters they've obtai
 
 - [Other Repo](https://github.com/dtersoff/fate-calculator-2-api)
 - [Deployed API](http://agile-earth-42586.herokuapp.com/)
-- [Deployed Client](www.link.com)
+- [Deployed Client](https://dtersoff.github.io/fate-calculator-2-client)
 
 ## Planning Story
 

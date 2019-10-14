@@ -4,8 +4,8 @@ import apiUrl from '../../apiConfig'
 import { Link } from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
-import sortClass from '../../lib/sorter'
-
+import Sorter from '../../lib/sorter'
+const sorter = new Sorter()
 const Servants = ({ user, alerts, match }) => {
   const [servants, setServants] = useState([])
 
@@ -45,7 +45,7 @@ const Servants = ({ user, alerts, match }) => {
         {
           Header: 'Class',
           accessor: 'sclass',
-          sortMethod: sortClass
+          sortMethod: (a, b) => sorter.sortClass(a, b)
         }
       ]}
     />

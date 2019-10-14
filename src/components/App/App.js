@@ -8,6 +8,10 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Servants from '../Servants/Servants'
+import Servant from '../Servants/Servant'
+import CreateServant from '../Servants/CreateServant'
+import EditServant from '../Servants/EditServant'
 
 class App extends Component {
   constructor () {
@@ -54,6 +58,34 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+          {/* index */}
+          <AuthenticatedRoute
+            user={user}
+            exact path='/servants'
+            render={() => (
+              <Servants user={user} />
+            )} />
+          {/* show */}
+          <AuthenticatedRoute
+            user={user}
+            exact path='/servants/:id'
+            render={() => (
+              <Servant user={user} />
+            )} />
+          {/* create */}
+          <AuthenticatedRoute
+            user={user}
+            path='/create-servant'
+            render={() => (
+              <CreateServant user={user} />
+            )} />
+          {/* edit */}
+          <AuthenticatedRoute
+            user={user}
+            path='/servants/:id/edit'
+            render={() => (
+              <EditServant user={user} alert={this.alert} />
+            )} />
         </main>
       </Fragment>
     )

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
+import sortClass from '../../lib/sorter'
 
 const Servants = ({ user, alerts, match }) => {
   const [servants, setServants] = useState([])
@@ -34,7 +35,17 @@ const Servants = ({ user, alerts, match }) => {
       columns={[
         {
           Header: 'Name',
-          accessor: 'name'
+          accessor: 'name',
+          Cell: props => ( // eslint-disable-line react/display-name
+            <Link to={`servants/${props.original._id}`}>
+              {props.original.name}
+            </Link>
+          )
+        },
+        {
+          Header: 'Class',
+          accessor: 'sclass',
+          sortMethod: sortClass
         }
       ]}
     />

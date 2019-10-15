@@ -21,34 +21,63 @@ const Servants = ({ user, alerts, match }) => {
       .catch(console.error)
   }, [])
 
-  // const servantsJsx = servants.map(servant => (
-  //   <p key={servant._id}>
-  //     <Link to={`servants/${servant._id}`}>
-  //       {servant.name}
-  //     </Link>
-  //   </p>
-  // ))
-
   return (
-    <ReactTable
-      data = {servants}
-      columns={[
-        {
-          Header: 'Name',
-          accessor: 'name',
-          Cell: props => ( // eslint-disable-line react/display-name
-            <Link to={`servants/${props.original._id}`}>
-              {props.original.name}
-            </Link>
-          )
-        },
-        {
-          Header: 'Class',
-          accessor: 'sclass',
-          sortMethod: (a, b) => sorter.sortClass(a, b)
-        }
-      ]}
-    />
+    <div>
+      <p>Click column headers to sort by that value.</p>
+      <p>Shift-click to sort by multiple columns (ex click class then
+        shift-click name to sort by class, with each class sorted by name)</p>
+      <div>
+        <ReactTable
+          data = {servants}
+          columns={[
+            {
+              Header: 'Name',
+              accessor: 'name',
+              Cell: props => ( // eslint-disable-line react/display-name
+                <Link to={`servants/${props.original._id}`}>
+                  {props.original.name}
+                </Link>
+              )
+            },
+            {
+              Header: 'Class',
+              accessor: 'sclass',
+              sortMethod: (a, b) => sorter.sortClass(a, b)
+            },
+            {
+              Header: 'Rarity',
+              accessor: 'rarity',
+              Cell: props => ( // eslint-disable-line react/display-name
+                <span>
+                  {props.original.rarity}-Stars
+                </span>
+              )
+            },
+            {
+              Header: 'Level',
+              accessor: 'level'
+            },
+            {
+              Header: 'Stats',
+              columns: [
+                {
+                  Header: 'Attack',
+                  accessor: 'atk'
+                },
+                {
+                  Header: 'HP',
+                  accessor: 'hp'
+                }
+              ]
+            },
+            {
+              Header: 'Acquisition',
+              accessor: 'createdAt'
+            }
+          ]}
+        />
+      </div>
+    </div>
 
   // <div>
   //   <h1>Servants</h1>

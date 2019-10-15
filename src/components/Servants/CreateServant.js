@@ -6,11 +6,14 @@ import ServantForm from './ServantForm'
 
 const CreateServant = ({ user }) => {
   const servantObject = {
-    _id: '',
-    title: '',
-    author: ''
+    name: 'Name',
+    sclass: 'Class',
+    rarity: 0,
+    level: 0,
+    atk: 0,
+    hp: 0
   }
-  const [created, setCreated] = useState(false)
+  const [created, setCreated] = useState(null)
   const [servant, setServant] = useState(servantObject)
 
   const handleChange = event => {

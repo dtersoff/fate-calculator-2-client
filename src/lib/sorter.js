@@ -21,8 +21,8 @@ Sorter.prototype.normalString = function (className) {
   return className.replace(/\s/g, '').toLowerCase()
 }
 
-Sorter.sortClass = function (a, b) {
-  console.log(a + ' ' + b)
+Sorter.prototype.sortClass = function (a, b) {
+  console.log(a)
   if (this.classOrder[this.normalString(a)] === this.classOrder[this.normalString(b)]) {
     return 0
   }
@@ -33,26 +33,34 @@ Sorter.sortClass = function (a, b) {
   }
 }
 
-Sorter.doubleSort = (servant1, servant2) => {
+Sorter.prototype.doubleSort = function (servant1, servant2, servants) {
+  function findWithAttr (array, attr, value) {
+    for (let i = 0; i < array.length; i += 1) {
+      if (array[i][attr] === value) {
+        return i
+      }
+    }
+    return -1
+  }
   // Array sorted by attack
-  const attackArray = [...this].sort((a, b) => (a.atk > b.atk) ? -1 : 1)
+  const attackArray = [...servants].sort((a, b) => (a.atk > b.atk) ? -1 : 1)
   // Array sorted by health
-  const healthArray = [...this].sort((a, b) => (a.hp > b.hp) ? -1 : 1)
+  const healthArray = [...servants].sort((a, b) => (a.hp > b.hp) ? -1 : 1)
 
   let s1Worst = 0
   let s2Worst = 0
   // If the servant is farther down the `attackArray`, set that index as the
   // worst value, otherwise set the `healthArray` index
-  if (attackArray.findIndex(servant1) > healthArray.findIndex(servant1)) {
-    s1Worst = attackArray.findIndex(servant1)
+  if (findWithAttr(attackArray, '_id', servant1) > findWithAttr(healthArray, '_id', servant1)) {
+    s1Worst = findWithAttr(attackArray, '_id', servant1)
   } else {
-    s1Worst = healthArray.findIndex(servant1)
+    s1Worst = findWithAttr(healthArray, '_id', servant1)
   }
   // Do the same for second servant
-  if (attackArray.findIndex(servant2) > healthArray.findIndex(servant2)) {
-    s2Worst = attackArray.findIndex(servant2)
+  if (findWithAttr(attackArray, '_id', servant2) > findWithAttr(healthArray, '_id', servant2)) {
+    s2Worst = findWithAttr(attackArray, '_id', servant2)
   } else {
-    s2Worst = healthArray.findIndex(servant2)
+    s2Worst = findWithAttr(healthArray, '_id', servant2)
   }
   // compare the two values and return
   return s1Worst > s2Worst ? 1 : -1

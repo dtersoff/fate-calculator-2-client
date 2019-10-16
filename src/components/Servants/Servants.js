@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import Sorter from '../../lib/sorter'
-// const sorter = new Sorter()
+const sorter = new Sorter()
 const Servants = ({ user, alerts, match }) => {
   const [servants, setServants] = useState([])
 
@@ -26,6 +26,9 @@ const Servants = ({ user, alerts, match }) => {
       <p>Click column headers to sort by that value.</p>
       <p>Shift-click to sort by multiple columns (ex click class then
         shift-click name to sort by class, with each class sorted by name)</p>
+      <p>The Balance column will sort by a balance of attack and hp. This means
+      that if a character has high attack and low defense, they will be sorted
+      later than a character with slightly lower attack and slightly higher defense</p>
       <div>
         <ReactTable
           data = {servants}
@@ -42,7 +45,10 @@ const Servants = ({ user, alerts, match }) => {
             {
               Header: 'Class',
               accessor: 'sclass',
-              sortmethod: (a, b) => Sorter.sortClass
+              sortMethod: (a, b) => {
+                console.log(this)
+                return sorter.sortClass(a, b)
+              }
             },
             {
               Header: 'Rarity',
@@ -74,11 +80,10 @@ const Servants = ({ user, alerts, match }) => {
               accessor: 'createdAt'
             },
             {
-              header: 'Balance',
-              id: 'balance',
-              accessor: (d) => d,
+              Header: 'Balance',
+              accessor: '_id',
               Cell: props => <span></span>, // eslint-disable-line react/display-name
-              sortmethod: (a, b) => sorter.doubleSort
+              sortMethod: (a, b) => sorter.doubleSort(a, b, servants)
             }
           ]}
         />

@@ -22,7 +22,7 @@ const Servants = ({ user, alerts, match }) => {
   }, [])
 
   return (
-    <div>
+    <span>
       <p>Click column headers to sort by that value.</p>
       <p>Shift-click to sort by multiple columns (ex click class then
         shift-click name to sort by class, with each class sorted by name)</p>
@@ -58,26 +58,28 @@ const Servants = ({ user, alerts, match }) => {
               accessor: 'level'
             },
             {
-              Header: 'Stats',
-              columns: [
-                {
-                  Header: 'Attack',
-                  accessor: 'atk'
-                },
-                {
-                  Header: 'HP',
-                  accessor: 'hp'
-                }
-              ]
+              Header: 'Attack',
+              accessor: 'atk'
+            },
+            {
+              Header: 'HP',
+              accessor: 'hp'
             },
             {
               Header: 'Acquisition',
               accessor: 'createdAt'
+            },
+            {
+              header: 'Balance',
+              id: 'balance',
+              accessor: (d) => d,
+              Cell: props => <span></span>, // eslint-disable-line react/display-name
+              sortmethod: (a, b) => sorter.doubleSort
             }
           ]}
         />
       </div>
-    </div>
+    </span>
 
   // <div>
   //   <h1>Servants</h1>

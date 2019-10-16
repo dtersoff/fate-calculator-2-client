@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 
-const Servants = ({ user, alerts, match }) => {
-  const [servant, setServant] = useState({})
-  const [deleted, setDeleted] = useState(false)
+const Servants = ({ user, alerts, match, history }) => {
+  const [servant, setServant] = useState(null)
 
   useEffect(() => {
     axios({
@@ -28,32 +27,32 @@ const Servants = ({ user, alerts, match }) => {
         'Authorization': `Token token=${user.token}`
       }
     })
-      .then(() => setDeleted(true))
+      .then(() => {
+        history.replace('/reload') // pass a non-existant route to erase the history
+        history.replace('/servants')
+      })
+      // .then(() => <Redirect to={
+      //   { pathname: '/servants', state: { msg: 'Servant succesfully deleted!' } }
+      // } />)
       .catch(console.error)
   }
 
   if (!servant) {
     return <p>Loading...</p>
+  } else {
+    return (
+      <div>
+        <p>Name: {servant.name}</p>
+        <p>Class: {servant.sclass}</p>
+        <p>Rarity: {servant.rarity} Stars</p>
+        <p>Level: {servant.level}</p>
+        <p>Attack: {servant.atk}</p>
+        <p>HP: {servant.hp}</p>
+        <Button href={`#/servants/${match.params.id}/edit`}>Edit</Button>
+        <Button onClick={destroy} href={'#/servants'}>Delete Servant</Button>
+      </div>
+    )
   }
-
-  if (deleted) {
-    return <Redirect to={
-      { pathname: '/', state: { msg: 'Servant succesfully deleted!' } }
-    } />
-  }
-
-  return (
-    <div>
-      <p>Name: {servant.name}</p>
-      <p>Class: {servant.sclass}</p>
-      <p>Rarity: {servant.rarity} Stars</p>
-      <p>Level: {servant.level}</p>
-      <p>Attack: {servant.atk}</p>
-      <p>HP: {servant.hp}</p>
-      <Button href={`#/servants/${match.params.id}/edit`}>Edit</Button>
-      <Button onClick={destroy} href={'#/servants'}>Delete Servant</Button>
-    </div>
-  )
 }
 
 export default withRouter(Servants)

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import Sorter from '../../lib/sorter'
-const sorter = new Sorter()
+// const sorter = new Sorter()
 const Servants = ({ user, alerts, match }) => {
   const [servants, setServants] = useState([])
 
@@ -42,7 +42,7 @@ const Servants = ({ user, alerts, match }) => {
             {
               Header: 'Class',
               accessor: 'sclass',
-              sortMethod: (a, b) => sorter.sortClass(a, b)
+              sortmethod: (a, b) => Sorter.sortClass
             },
             {
               Header: 'Rarity',
@@ -64,6 +64,10 @@ const Servants = ({ user, alerts, match }) => {
             {
               Header: 'HP',
               accessor: 'hp'
+            },
+            {
+              Header: 'Bond Level',
+              accessor: 'bond'
             },
             {
               Header: 'Acquisition',

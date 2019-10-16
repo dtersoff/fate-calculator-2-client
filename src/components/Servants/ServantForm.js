@@ -64,7 +64,7 @@ const ServantForm = ({ servant, handleChange, handleSubmit }) => {
         {values.map(e => (
           // if `servant[key]` (with `key` being either `rarity` or `sclass`)
           // matches the option being created, set it as the selected option
-          <option key={e} selected={servant[key] === e}>{e}</option>
+          <option key={e}>{e}</option>
         ))}
       </Form.Control>
     )

@@ -5,7 +5,16 @@ import apiUrl from '../../apiConfig'
 import ServantForm from './ServantForm'
 
 const EditServant = ({ user, match, alert, history }) => {
-  const [servant, setServant] = useState({ title: '', author: '' })
+  const servantObject = {
+    _id: '',
+    name: 'Name',
+    sclass: 'Class',
+    rarity: 0,
+    level: 0,
+    atk: 0,
+    hp: 0
+  }
+  const [servant, setServant] = useState(servantObject)
 
   useEffect(() => {
     axios({

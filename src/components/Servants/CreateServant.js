@@ -33,7 +33,7 @@ const CreateServant = ({ user }) => {
       data: { servant }
     })
       .then(responseData => setCreated(responseData.data.servant._id))
-      .catch(console.error)
+      .catch(() => alert({ heading: 'Error', message: 'Something went wrong. Please make sure all fields are correct.', variant: 'danger' }))
   }
 
   if (created) {

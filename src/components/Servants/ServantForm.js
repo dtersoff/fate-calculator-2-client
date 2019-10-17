@@ -13,7 +13,8 @@ const ServantForm = ({ servant, handleChange, handleSubmit }) => {
     rarity: 'Rarity',
     level: 'Level',
     atk: 'Attack',
-    hp: 'HP'
+    hp: 'HP',
+    bond: 'Bond Level'
   }
   // list of servant class names, to be used for populating the Class dropdown
   const classList = ['Saber', 'Lancer', 'Archer', 'Rider', 'Caster', 'Assassin', 'Berserker', 'Ruler', 'Avenger', 'Alter Ego', 'Moon Cancer', 'Shielder']

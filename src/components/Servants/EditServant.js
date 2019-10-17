@@ -46,7 +46,7 @@ const EditServant = ({ user, match, alert, history }) => {
     })
       .then(() => alert({ heading: 'Success', message: 'You updated a servant', variant: 'success' }))
       .then(() => history.push(`/servants/${match.params.id}`))
-      .catch(() => alert({ heading: 'Error', message: 'Something went wrong', variant: 'danger' }))
+      .catch(() => alert({ heading: 'Error', message: 'Something went wrong. Please make sure all fields are correct.', variant: 'danger' }))
   }
 
   return (

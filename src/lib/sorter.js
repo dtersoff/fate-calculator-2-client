@@ -22,7 +22,6 @@ Sorter.prototype.normalString = function (className) {
 }
 
 Sorter.prototype.sortClass = function (a, b) {
-  console.log(a)
   if (this.classOrder[this.normalString(a)] === this.classOrder[this.normalString(b)]) {
     return 0
   }

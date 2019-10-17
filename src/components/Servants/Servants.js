@@ -46,7 +46,6 @@ const Servants = ({ user, alerts, match }) => {
               Header: 'Class',
               accessor: 'sclass',
               sortMethod: (a, b) => {
-                console.log(this)
                 return sorter.sortClass(a, b)
               }
             },

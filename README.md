@@ -55,9 +55,13 @@ DELETE | /servants/:id
 ### Unsolved Problems
 
 - Would like to eventually
-  - [ ] Implement servant suggestion feature 
+  - [ ] Implement servant suggestion feature
   - [ ] Make react table headers and filter fields sticky so that they can still be seen when scrolling down
   - [ ] Customize filter fields so that some are dropdown menus
+  - [ ] Styling
+    - [ ] Make form layout look nicer
+    - [ ] Fonts
+    - [ ] Backgrounds
 
 ## Images
 

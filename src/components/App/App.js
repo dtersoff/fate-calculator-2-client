@@ -63,21 +63,21 @@ class App extends Component {
             user={user}
             exact path='/servants'
             render={() => (
-              <Servants user={user} />
+              <Servants user={user} alert={alert} />
             )} />
           {/* show */}
           <AuthenticatedRoute
             user={user}
             exact path='/servants/:id'
             render={() => (
-              <Servant user={user} />
+              <Servant user={user} alert={alert} />
             )} />
           {/* create */}
           <AuthenticatedRoute
             user={user}
             path='/create-servant'
             render={() => (
-              <CreateServant user={user} />
+              <CreateServant user={user} alert={this.alert} />
             )} />
           {/* edit */}
           <AuthenticatedRoute

@@ -63,6 +63,7 @@ DELETE | /servants/:id
     - [ ] Clean up 'Acquisition'/timestamp display
     - [ ] Fonts
     - [ ] Backgrounds
+  - [ ] Implement a feature to allow users to upload a csv file and have it populate the database for them
 
 ## Images
 #### Screenshot:

@@ -60,10 +60,13 @@ DELETE | /servants/:id
   - [ ] Customize filter fields so that some are dropdown menus
   - [ ] Styling
     - [ ] Make form layout look nicer
+    - [ ] Clean up 'Acquisition'/timestamp display
     - [ ] Fonts
     - [ ] Backgrounds
 
 ## Images
+#### Screenshot:
+![wireframe](https://i.imgur.com/FTmrjbZ.png)
 
 #### Wireframe:
 ![wireframe](https://i.imgur.com/V9DThg2.jpg)

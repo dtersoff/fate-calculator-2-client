@@ -12,7 +12,8 @@ const EditServant = ({ user, match, alert, history }) => {
     rarity: 0,
     level: 0,
     atk: 0,
-    hp: 0
+    hp: 0,
+    bond: 0
   }
   const [servant, setServant] = useState(servantObject)
 

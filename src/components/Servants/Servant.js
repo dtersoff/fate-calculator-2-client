@@ -48,7 +48,7 @@ const Servants = ({ user, alerts, match, history }) => {
         <p>Level: {servant.level}</p>
         <p>Attack: {servant.atk}</p>
         <p>HP: {servant.hp}</p>
-        <p>Balance: {servant.balance}</p>
+        <p>Bond Level: {servant.bond}</p>
         <Button href={`#/servants/${match.params.id}/edit`}>Edit</Button>
         <Button onClick={destroy} href={'#/servants'}>Delete Servant</Button>
       </div>

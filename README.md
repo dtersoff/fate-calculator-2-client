@@ -19,7 +19,7 @@ An app which allows a user to keep track of the Servant characters they've obtai
 - [x] Create express model for servants
 - [x] Create express routes for servants
 - [x] test user and servant routes
-- [ ] Begin building client in react, using previous version handlebars as reference.
+- [x] Begin building client in react, using previous version handlebars as reference.
 - [ ] Begin building new features
 
 
@@ -54,8 +54,10 @@ DELETE | /servants/:id
 
 ### Unsolved Problems
 
-- Still need to ....
-- Would like to eventually ....
+- Would like to eventually
+  - [ ] Implement servant suggestion feature 
+  - [ ] Make react table headers and filter fields sticky so that they can still be seen when scrolling down
+  - [ ] Customize filter fields so that some are dropdown menus
 
 ## Images
 

@@ -12,6 +12,7 @@ import Servants from '../Servants/Servants'
 import Servant from '../Servants/Servant'
 import CreateServant from '../Servants/CreateServant'
 import EditServant from '../Servants/EditServant'
+import FrontPage from '../FrontPage/FrontPage'
 
 class App extends Component {
   constructor () {
@@ -46,6 +47,9 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route exact path='/' render={() => (
+            <FrontPage user={user} />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
@@ -88,6 +92,7 @@ class App extends Component {
             )} />
         </main>
       </Fragment>
+
     )
   }
 }

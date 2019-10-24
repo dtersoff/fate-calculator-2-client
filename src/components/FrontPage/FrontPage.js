@@ -6,7 +6,7 @@ const FrontPage = ({ user }) => {
   )
 
   const signedIn = (
-    <div>Click Servants to see a list of servants you own, or Create Servant to create a new one.</div>
+    <div>Click Servants to see a list of servants you own, or New Servant to create a new one.</div>
   )
 
   const homePage = function () {

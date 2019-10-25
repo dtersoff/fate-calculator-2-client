@@ -1,12 +1,13 @@
 import React from 'react'
 import Sorter from '../../lib/sorter'
+import modify from '../../lib/modify'
 import { Link } from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
 const sorter = new Sorter()
 
-const ServantTable = function ({ servants }) {
+const ServantTable = function ({ servants, suggest }) {
   return (
     <div>
       <ReactTable
@@ -48,7 +49,8 @@ const ServantTable = function ({ servants }) {
           },
           {
             Header: 'Attack',
-            accessor: 'atk'
+            id: 'atk',
+            accessor: d => (suggest ? modify(d).atk.toFixed(2) : d.atk)
           },
           {
             Header: 'HP',

@@ -13,6 +13,7 @@ import Servant from '../Servants/Servant'
 import CreateServant from '../Servants/CreateServant'
 import EditServant from '../Servants/EditServant'
 import FrontPage from '../FrontPage/FrontPage'
+import SuggestServants from '../Servants/SuggestServants'
 
 class App extends Component {
   constructor () {
@@ -71,6 +72,13 @@ class App extends Component {
             exact path='/servants'
             render={() => (
               <Servants user={user} alert={alert} />
+            )} />
+          {/* suggest */}
+          <AuthenticatedRoute
+            user={user}
+            exact path='/suggest'
+            render={() => (
+              <SuggestServants user={user} alert={alert} />
             )} />
           {/* show */}
           <AuthenticatedRoute

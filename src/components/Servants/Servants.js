@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import ServantTable from './ServantTable'
+import { Link } from 'react-router-dom'
+
 const Servants = ({ user, alerts, match }) => {
   const [servants, setServants] = useState([])
 
@@ -25,7 +27,12 @@ const Servants = ({ user, alerts, match }) => {
       <p>The Balance column will sort by a balance of attack and hp. This means
       that if a character has high attack and low defense, they will be sorted
       later than a character with slightly lower attack and slightly higher defense</p>
-      <ServantTable servants={servants} />
+      <p>
+        <Link to='suggest'>
+          Suggest Servants
+        </Link>
+      </p>
+      <ServantTable servants={servants} suggest={false} />
     </span>
 
   // <div>

@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-<<<<<<< Updated upstream
-import ServantTable from './ServantTable'
-=======
 import { Link } from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import Sorter from '../../lib/sorter'
-// const sorter = new Sorter()
->>>>>>> Stashed changes
+const sorter = new Sorter()
 const Servants = ({ user, alerts, match }) => {
   const [servants, setServants] = useState([])
 
@@ -30,16 +26,17 @@ const Servants = ({ user, alerts, match }) => {
       <p>Click column headers to sort by that value.</p>
       <p>Shift-click to sort by multiple columns (ex click class then
         shift-click name to sort by class, with each class sorted by name)</p>
-<<<<<<< Updated upstream
       <p>The Balance column will sort by a balance of attack and hp. This means
       that if a character has high attack and low defense, they will be sorted
       later than a character with slightly lower attack and slightly higher defense</p>
-      <ServantTable servants={servants} />
-    </span>
-=======
       <div>
         <ReactTable
           data = {servants}
+          filterable
+          defaultFilterMethod={(filter, row, column) => {
+            const id = filter.pivotId || filter.id
+            return row[id] !== undefined ? String(row[id]).toLowerCase().startsWith(filter.value.toLowerCase()) : true
+          }}
           columns={[
             {
               Header: 'Name',
@@ -53,7 +50,9 @@ const Servants = ({ user, alerts, match }) => {
             {
               Header: 'Class',
               accessor: 'sclass',
-              sortmethod: (a, b) => Sorter.sortClass
+              sortMethod: (a, b) => {
+                return sorter.sortClass(a, b)
+              }
             },
             {
               Header: 'Rarity',
@@ -69,17 +68,12 @@ const Servants = ({ user, alerts, match }) => {
               accessor: 'level'
             },
             {
-              Header: 'Stats',
-              columns: [
-                {
-                  Header: 'Attack',
-                  accessor: 'atk'
-                },
-                {
-                  Header: 'HP',
-                  accessor: 'hp'
-                }
-              ]
+              Header: 'Attack',
+              accessor: 'atk'
+            },
+            {
+              Header: 'HP',
+              accessor: 'hp'
             },
             {
               Header: 'Bond Level',
@@ -88,22 +82,17 @@ const Servants = ({ user, alerts, match }) => {
             {
               Header: 'Acquisition',
               accessor: 'createdAt'
-<<<<<<< Updated upstream
-=======
             },
             {
               Header: 'Balance',
-              id: 'balance',
-              accessor: (d) => d,
-              Cell: props => <span>{props.value.name}</span>, // eslint-disable-line react/display-name
-              sortmethod: (a, b) => Sorter.sortClass
->>>>>>> Stashed changes
+              accessor: '_id',
+              Cell: props => <span></span>, // eslint-disable-line react/display-name
+              sortMethod: (a, b) => sorter.doubleSort(a, b, servants)
             }
           ]}
         />
       </div>
-    </div>
->>>>>>> Stashed changes
+    </span>
 
   // <div>
   //   <h1>Servants</h1>

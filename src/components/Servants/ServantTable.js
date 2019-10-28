@@ -1,6 +1,5 @@
 import React from 'react'
 import Sorter from '../../lib/sorter'
-// import modify from '../../lib/modify'
 import { Link } from 'react-router-dom'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
@@ -49,7 +48,12 @@ const ServantTable = function ({ servants, suggest }) {
           },
           {
             Header: 'Attack',
-            accessor: 'atk'
+            accessor: 'atk',
+            Cell: props => ( // eslint-disable-line react/display-name
+              <span>
+                {Math.floor(props.original.atk)}
+              </span>
+            )
           },
           {
             Header: 'HP',

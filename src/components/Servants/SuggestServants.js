@@ -3,6 +3,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import ServantTable from './ServantTable'
 import ClassSelector from './ClassSelector'
+import modify from '../../lib/modify'
 
 const SuggestServants = ({ user, alerts, match }) => {
   const classesObject = {
@@ -30,7 +31,8 @@ const SuggestServants = ({ user, alerts, match }) => {
         'Authorization': `Token token=${user.token}`
       }
     })
-      .then(responseData => setServants(responseData.data.servants))
+    // Sets state to be the array of servants, with their stats modified
+      .then(responseData => setServants(responseData.data.servants.map(servant => modify(servant))))
       .catch(console.error)
   }, [])
 
@@ -48,6 +50,7 @@ const SuggestServants = ({ user, alerts, match }) => {
           <li>Certain classes actually have a hidden modifier to their attack stat, so the stat displayed in game is not the actual stat used when calculating damage.</li>
           <li>{'In order to determine which Servants are most useful for a given mission, this app will adjust the Servants\' atk and hp values in order to better reflect how strong they will be based on which classes they\'re strong or weak against, and the relative weight of those classes in the overall enemy team makeup.'}</li>
         </ol>
+        <p>Additionally, values have been rounded for display purposes</p>
         <p>Click <a href='https://gamepress.gg/grandorder/combat-mechanics'>here</a> for more details on these mechanics</p>
       </div>
       <div>

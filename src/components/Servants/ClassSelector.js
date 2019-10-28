@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 const ClassSelector = function ({ classes, handleChange }) {
   const classList = {
@@ -42,19 +43,29 @@ const ClassSelector = function ({ classes, handleChange }) {
     )
   }
 
-  const formFieldsJsx = Object.keys(classes).map(key => (
-    <Form.Group controlId={key} key={key}>
-      <Form.Label>
-        <img src={`${process.env.PUBLIC_URL}/images/Icon_Class_${key}.png`} title={`${classList[key]}`} width='30'></img>
-      </Form.Label>
-      {classFieldJsx(key)}
-    </Form.Group>
-  ))
-
+  const formFieldsJsx = (keys) => {
+    return keys.map(key => (
+      <Col key={key}>
+        <Form.Group controlId={key}>
+          <Form.Label>
+            <img src={`${process.env.PUBLIC_URL}/images/Icon_Class_${key}.png`} title={`${classList[key]}`} width='30'></img>
+          </Form.Label>
+          {classFieldJsx(key)}
+        </Form.Group>
+      </Col>
+    ))
+  }
   return (
     <Form>
+      {/* First row contains the 7 core classes */}
       <Form.Row>
-        {formFieldsJsx}
+        {formFieldsJsx(Object.keys(classList).slice(0, 7))}
+      </Form.Row>
+      {/* Second row contains the extra classes */}
+      <Form.Row>
+        <Col></Col>
+        {formFieldsJsx(Object.keys(classList).slice(7))}
+        <Col></Col>
       </Form.Row>
     </Form>
   )

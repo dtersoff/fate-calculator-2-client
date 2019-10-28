@@ -17,7 +17,7 @@ const ServantForm = ({ servant, handleChange, handleSubmit }) => {
     bond: 'Bond Level'
   }
   // list of servant class names, to be used for populating the Class dropdown
-  const classList = ['Saber', 'Lancer', 'Archer', 'Rider', 'Caster', 'Assassin', 'Berserker', 'Ruler', 'Avenger', 'Alter Ego', 'Moon Cancer', 'Shielder']
+  const classList = ['Saber', 'Archer', 'Lancer', 'Rider', 'Caster', 'Assassin', 'Berserker', 'Ruler', 'Avenger', 'Alter Ego', 'Moon Cancer', 'Shielder']
   const textFieldJsx = key => {
     return (
     // `key` will be passed in from formFieldsJsx which maps through an array
